@@ -1,27 +1,28 @@
-import 'package:fampay_assignment/controller/page_controller.dart';
+import 'package:fampay_assignment/controller/card_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  final CardController pageController = Get.put(CardController());
+  final ApiController controller = Get.put(ApiController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("API Data"),
-      ),
       body: Obx(() {
-        if (pageController.apiData.isEmpty) {
+        if (controller.isLoading) {
           return Center(child: CircularProgressIndicator());
         }
+        
+        if (controller.error.isNotEmpty) {
+          return Center(child: Text(controller.error));
+        }
+
         return ListView.builder(
-          itemCount: pageController.apiData.length,
+          itemCount: controller.apiData.length,
           itemBuilder: (context, index) {
-            final item = pageController.apiData[index];
+            final data = controller.apiData[index];
             return ListTile(
-              title: Text(item['title'] ?? "ABC"),
-              subtitle: Text(item['body'] ?? "ABC"),
+              title: Text(data.slug),
             );
           },
         );
