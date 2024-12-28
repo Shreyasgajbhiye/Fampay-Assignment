@@ -1,3 +1,4 @@
+import 'package:fampay_assignment/core/convert_hex.dart';
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,8 @@ class FormattedTextWidget extends StatelessWidget {
             style: TextStyle(
               // height: entity.,
               color: entity.color != null
-                  ? Color(int.parse(entity.color!.replaceAll('#', '0xFF')))
+                  // ? Color(int.parse(entity.color!.replaceAll('#', '0xFF')))
+                  ? hexToColor(entity.color.toString())
                   : Colors.white,
               fontSize: entity.fontSize?.toDouble() ?? 19,
               fontStyle: entity.fontStyle == 'italic'

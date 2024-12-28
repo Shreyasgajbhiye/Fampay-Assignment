@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fampay_assignment/core/convert_hex.dart';
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:fampay_assignment/page/home_page.dart';
 import 'package:fampay_assignment/widget/formatted_text_widget.dart';
@@ -57,8 +58,9 @@ class HC3Widget extends StatelessWidget {
                         log(card.cta!.first.bgColor.toString());
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(int.parse(
-                            card.cta!.first.bgColor.replaceAll('#', '0xFF'))),
+                        // backgroundColor: Color(int.parse(
+                        //     card.cta!.first.bgColor.replaceAll('#', '0xFF'))),
+                        backgroundColor:  hexToColor(card.cta!.first.bgColor.toString()),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               card.cta!.first.isCircular ? 24 : 8),

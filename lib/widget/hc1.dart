@@ -1,3 +1,4 @@
+import 'package:fampay_assignment/core/convert_hex.dart';
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:fampay_assignment/widget/formatted_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,9 @@ class HC1Widget extends StatelessWidget {
             margin: EdgeInsets.only(right: 8),
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Color(int.parse(
-                  card.bgColor?.replaceAll('#', '0xFF') ?? '0xFFFFFFFF')),
+              // color: Color(int.parse(
+              //     card.bgColor?.replaceAll('#', '0xFF') ?? '0xFFFFFFFF')),
+              color: hexToColor(card.bgColor.toString()),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
