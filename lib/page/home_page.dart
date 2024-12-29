@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: hexToColor('#F7F6F3'),
       appBar: AppBar(
-        
         backgroundColor: Colors.white,
         title: Center(
           child: SvgPicture.asset(

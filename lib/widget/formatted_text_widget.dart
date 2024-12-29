@@ -37,7 +37,9 @@ class FormattedTextWidget extends StatelessWidget {
         spans.add(
           TextSpan(
             text: entity.text,
+            
             style: TextStyle(
+              overflow: TextOverflow.ellipsis,
               color: entity.color != null
                   ? hexToColor(entity.color.toString())
                   : firstColor, 

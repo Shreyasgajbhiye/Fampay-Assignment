@@ -10,47 +10,90 @@ class HC1Widget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (group.cards.length == 1) {
+      return Container(
+        margin: const EdgeInsets.all(16),
+        height: group.height?.toDouble() ?? 64,
+        child: _buildCard(group.cards[0], MediaQuery.of(context).size.width - 32), 
+      );
+    }
+
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       height: group.height?.toDouble() ?? 64,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: group.isScrollable
-            ? ScrollPhysics()
-            : NeverScrollableScrollPhysics(),
-        itemCount: group.cards.length,
-        itemBuilder: (context, index) {
-          final card = group.cards[index];
-          return Container(
-            margin: EdgeInsets.only(right: 8),
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              // color: Color(int.parse(
-              //     card.bgColor?.replaceAll('#', '0xFF') ?? '0xFFFFFFFF')),
-              color: hexToColor(card.bgColor.toString()),
-              borderRadius: BorderRadius.circular(8),
+      child: !group.isScrollable
+          ? ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: const AlwaysScrollableScrollPhysics(),
+              itemCount: group.cards.length,
+              itemBuilder: (context, index) {
+                return _buildCard(group.cards[index], null);
+              },
+            )
+          : LayoutBuilder(
+              builder: (context, constraints) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: group.cards.map((card) {
+                    double cardWidth = (constraints.maxWidth - 
+                        (9.0 * (group.cards.length ))) / group.cards.length;
+                    return _buildCard(card, cardWidth);
+                  }).toList(),
+                );
+              },
             ),
-            child: Row(
-              children: [
-                if (card.icon != null)
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(card.icon!.imageUrl),
+    );
+  }
+
+  Widget _buildCard(dynamic card, double? width) {
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      padding: const EdgeInsets.all(8),
+      width: width,
+      decoration: BoxDecoration(
+        color: hexToColor(card.bgColor.toString()),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: IntrinsicWidth( 
+        child: Row(
+          mainAxisSize: MainAxisSize.min, 
+          children: [
+            if (card.icon != null)
+              CircleAvatar(
+                backgroundImage: NetworkImage(card.icon!.imageUrl),
+              ),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // FormattedTextWidget(formatted: card.formattedTitle),
+                  // if (card.formattedDescription != null)
+                  //   FormattedTextWidget(formatted: card.formattedDescription!),
+                  // if (card.formattedDescription != null)
+                  //   FormattedTextWidget(formatted: card.formattedDescription!),
+                  
+                  Text((card.formattedTitle == null) ? "" :card.formattedTitle.entities.first.text,
+                  maxLines: 1,
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 14
                   ),
-                SizedBox(width: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    FormattedTextWidget(formatted: card.formattedTitle),
-                    if (card.formattedDescription != null)
-                      FormattedTextWidget(
-                          formatted: card.formattedDescription!),
-                  ],
-                ),
-              ],
+                  ),
+                  Text((card.formattedDescription == null) ? "" : card.formattedDescription.entities.first.text,
+                  maxLines: 1,
+                  
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 14
+                  ),
+                  )
+                ],
+              ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }
