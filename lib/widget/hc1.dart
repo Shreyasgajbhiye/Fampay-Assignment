@@ -21,7 +21,7 @@ class HC1Widget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(16),
       height: group.height?.toDouble() ?? 64,
-      child: !group.isScrollable
+      child: group.isScrollable
           ? ListView.builder(
               scrollDirection: Axis.horizontal,
               physics: const AlwaysScrollableScrollPhysics(),

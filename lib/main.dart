@@ -2,7 +2,7 @@ import 'package:fampay_assignment/page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

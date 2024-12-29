@@ -1,7 +1,6 @@
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:flutter/material.dart';
-//images is there
-// fixed height and dny width
+
 
 class HC9Widget extends StatelessWidget {
   final HcGroup group;
