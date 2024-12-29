@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fampay_assignment/core/convert_hex.dart';
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +12,9 @@ class HC6Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16, right: 16),
+      margin: EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
-      height: group.height! + 25.toDouble() ?? 35,
+      height: group.height! + 25.toDouble(),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: group.isScrollable
@@ -22,32 +24,48 @@ class HC6Widget extends StatelessWidget {
         itemBuilder: (context, index) {
           final card = group.cards[index];
           return Container(
-            // margin: EdgeInsets.symmetric(horizontal: 8),
-            // padding: EdgeInsets.symmetric(horizontal: 12),
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
+            width: MediaQuery.of(context).size.width - 32,
             decoration: BoxDecoration(
-              // color: Color(int.parse(
-              //     card.bgColor?.replaceAll('#', '0xFF') ?? '0xFFFFFFFF')),
               color: hexToColor(card.bgColor.toString()),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Row(
-              children: [
-                if (card.icon != null)
-                  Image.network(
-                    card.icon!.imageUrl,
-                    height: card.iconSize! + 8.toDouble() ?? 24,
+            child: GestureDetector(
+              onTap: () {
+                log("icon size " +
+                    card.iconSize.toString() +
+                    " " +
+                    "font size " +
+                    card.formattedTitle!.entities.first.fontSize.toString());
+                log(card.bgColor.toString());
+              },
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (card.icon != null)
+                    Image.network(
+                      card.icon!.imageUrl,
+                      height: card.iconSize! + 9.toDouble(),
+                    ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      card.formattedTitle!.entities.first.text.toString(),
+                      style: TextStyle(
+                        fontSize: card.formattedTitle!.entities.first.fontSize
+                            ?.toDouble(),
+                        color: hexToColor(card.formattedTitle!.entities.first.color.toString()),
+                        fontWeight: card.formattedTitle!.entities.first.fontFamily ==
+                                'met_semi_bold'
+                            ? FontWeight.w500
+                            : FontWeight.w700,
+                      ),
+                    ),
                   ),
-                SizedBox(width: 8),
-                Text(
-                  card.formattedTitle!.entities.first.text.toString(),
-                  style: TextStyle(
-                    color: Color(int.parse(card
-                        .formattedTitle!.entities.first.color!
-                        .replaceAll('#', '0xFF'))),
-                  ),
-                ),
-                Icon(Icons.chevron_right),
-              ],
+                  Icon(Icons.chevron_right),
+                ],
+              ),
             ),
           );
         },

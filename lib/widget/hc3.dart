@@ -29,7 +29,7 @@ class HC3Widget extends StatelessWidget {
           },
           child: Container(
             alignment: Alignment.center,
-            height: group.height! - 220.toDouble() ?? 300,
+            height: group.height! - 220.toDouble(),
             margin: EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -66,7 +66,11 @@ class HC3Widget extends StatelessWidget {
                               card.cta!.first.isCircular ? 24 : 8),
                         ),
                       ),
-                      child: Text(card.cta!.first.text),
+                      child: Text(card.cta!.first.text,
+                      style: TextStyle(
+                        color: Colors.white
+                      ),
+                      ),
                     ),
                   ),
               ],

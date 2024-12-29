@@ -1,6 +1,7 @@
 import 'package:fampay_assignment/model/card_model.dart';
 import 'package:flutter/material.dart';
-
+//images is there
+// fixed height and dny width
 
 class HC9Widget extends StatelessWidget {
   final HcGroup group;
@@ -19,9 +20,9 @@ class HC9Widget extends StatelessWidget {
         itemBuilder: (context, index) {
           final card = group.cards[index];
           return Container(
-            width: 120,
             margin: EdgeInsets.only(right: 8),
             decoration: BoxDecoration(
+              
               borderRadius: BorderRadius.circular(8),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -34,6 +35,7 @@ class HC9Widget extends StatelessWidget {
                     (card.bgGradient?.angle ?? 0) * 3.14 / 180),
               ),
             ),
+            child: Image.network(card.bgImage!.imageUrl.toString()),
           );
         },
       ),

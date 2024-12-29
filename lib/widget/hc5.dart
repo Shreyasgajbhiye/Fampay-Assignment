@@ -18,6 +18,7 @@ class HC5Widget extends StatelessWidget {
         return ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: Container(
+            width: double.infinity, // @ToDo
             margin: EdgeInsets.all(16),
             child: AspectRatio(
               aspectRatio: card.bgImage?.aspectRatio ?? 1.0,

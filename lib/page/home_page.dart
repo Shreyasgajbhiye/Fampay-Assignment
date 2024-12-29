@@ -1,13 +1,8 @@
-import 'dart:developer';
-
 import 'package:fampay_assignment/controller/card_controller.dart';
-import 'package:fampay_assignment/model/card_model.dart';
-import 'package:fampay_assignment/widget/HC1.dart';
-import 'package:fampay_assignment/widget/HC3.dart';
-import 'package:fampay_assignment/widget/hc5.dart';
-import 'package:fampay_assignment/widget/hc6.dart';
-import 'package:fampay_assignment/widget/hc9.dart';
+import 'package:fampay_assignment/core/convert_hex.dart';
+import 'package:fampay_assignment/widget/hc_group.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,9 +11,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 230, 228, 228),
+      backgroundColor: hexToColor('#F7F6F3'),
       appBar: AppBar(
+        
         backgroundColor: Colors.white,
+        title: Center(
+          child: SvgPicture.asset(
+            'assets/fampaylogo.svg',
+            width: 30,
+            height: 25,
+          ),
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () => controller.refreshData(),
@@ -44,29 +47,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class HcGroupWidget extends StatelessWidget {
-  final HcGroup group;
-
-  const HcGroupWidget({Key? key, required this.group}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    switch (group.designType) {
-      case 'HC3':
-        return HC3Widget(group: group);
-      case 'HC6':
-        return HC6Widget(group: group);
-      case 'HC5':
-        return HC5Widget(group: group);
-      case 'HC9':
-        return HC9Widget(group: group);
-      case 'HC1':
-        return HC1Widget(group: group);
-      default:
-        return SizedBox.shrink();
-    }
-  }
-}
 
 
 
