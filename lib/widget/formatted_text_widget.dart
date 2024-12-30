@@ -1,5 +1,5 @@
 import 'package:fampay_assignment/core/convert_hex.dart';
-import 'package:fampay_assignment/model/card_model.dart';
+import 'package:fampay_assignment/model/formatted_model.dart';
 import 'package:flutter/material.dart';
 
 class FormattedTextWidget extends StatelessWidget {
@@ -26,7 +26,7 @@ class FormattedTextWidget extends StatelessWidget {
           text: parts[i],
           style: TextStyle(
             fontSize: firstFontSize,
-            color: firstColor,  // Inherit color from the first entity
+            color: firstColor,  
           ),
         ));
       }
@@ -57,7 +57,7 @@ class FormattedTextWidget extends StatelessWidget {
       }
 
       if (i < parts.length - 1) {
-        spans.add(TextSpan(
+        spans.add(const TextSpan(
           text: ' ',  
           style: TextStyle(
             fontSize: 10, 

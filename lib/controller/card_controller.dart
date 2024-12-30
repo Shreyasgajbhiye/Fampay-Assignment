@@ -1,4 +1,6 @@
+import 'package:fampay_assignment/model/api_response_model.dart';
 import 'package:fampay_assignment/model/card_model.dart';
+import 'package:fampay_assignment/static/network_url.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -12,7 +14,7 @@ class ApiController extends GetxController {
   List<ApiData> get apiData => _apiData;
   String get error => _error.value;
 
-  final String baseUrl = 'https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage';
+  final String baseUrl = NetworkUrl.url;
 
   @override
   void onInit() {

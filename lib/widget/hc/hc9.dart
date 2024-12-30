@@ -1,6 +1,5 @@
-import 'package:fampay_assignment/model/card_model.dart';
+import 'package:fampay_assignment/model/hc_group_model.dart';
 import 'package:flutter/material.dart';
-
 
 class HC9Widget extends StatelessWidget {
   final HcGroup group;
@@ -21,7 +20,6 @@ class HC9Widget extends StatelessWidget {
           return Container(
             margin: EdgeInsets.only(right: 8),
             decoration: BoxDecoration(
-              
               borderRadius: BorderRadius.circular(8),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -41,4 +39,3 @@ class HC9Widget extends StatelessWidget {
     );
   }
 }
-

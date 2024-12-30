@@ -1,5 +1,6 @@
 import 'package:fampay_assignment/controller/card_controller.dart';
 import 'package:fampay_assignment/core/convert_hex.dart';
+import 'package:fampay_assignment/static/app_assets.dart';
 import 'package:fampay_assignment/widget/hc_group.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Center(
           child: SvgPicture.asset(
-            'assets/fampaylogo.svg',
+            AppAssets.fampaylogo,
             width: 30,
             height: 25,
           ),
@@ -26,7 +27,7 @@ class HomePage extends StatelessWidget {
         onRefresh: () => controller.refreshData(),
         child: Obx(() {
           if (controller.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (controller.error.isNotEmpty) {

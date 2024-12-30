@@ -1,4 +1,4 @@
-import 'package:fampay_assignment/model/card_model.dart';
+import 'package:fampay_assignment/model/hc_group_model.dart';
 import 'package:flutter/material.dart';
 
 class HC5Widget extends StatelessWidget {

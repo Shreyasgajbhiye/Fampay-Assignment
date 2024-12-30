@@ -1,10 +1,10 @@
 
-import 'package:fampay_assignment/model/card_model.dart';
-import 'package:fampay_assignment/widget/hc1.dart';
-import 'package:fampay_assignment/widget/hc3.dart';
-import 'package:fampay_assignment/widget/hc5.dart';
-import 'package:fampay_assignment/widget/hc6.dart';
-import 'package:fampay_assignment/widget/hc9.dart';
+import 'package:fampay_assignment/model/hc_group_model.dart';
+import 'package:fampay_assignment/widget/hc/hc1.dart';
+import 'package:fampay_assignment/widget/hc/hc3.dart';
+import 'package:fampay_assignment/widget/hc/hc5.dart';
+import 'package:fampay_assignment/widget/hc/hc6.dart';
+import 'package:fampay_assignment/widget/hc/hc9.dart';
 import 'package:flutter/material.dart';
 class HcGroupWidget extends StatelessWidget {
   final HcGroup group;
@@ -25,7 +25,7 @@ class HcGroupWidget extends StatelessWidget {
       case 'HC1':
         return HC1Widget(group: group);
       default:
-        return SizedBox.shrink();
+        return const SizedBox.shrink();
     }
   }
 }

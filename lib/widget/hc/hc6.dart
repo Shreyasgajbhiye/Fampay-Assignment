@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:fampay_assignment/core/convert_hex.dart';
-import 'package:fampay_assignment/model/card_model.dart';
+import 'package:fampay_assignment/model/hc_group_model.dart';
 import 'package:flutter/material.dart';
 
 class HC6Widget extends StatelessWidget {
@@ -33,12 +33,12 @@ class HC6Widget extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
-                log("icon size " +
-                    card.iconSize.toString() +
-                    " " +
-                    "font size " +
-                    card.formattedTitle!.entities.first.fontSize.toString());
-                log(card.bgColor.toString());
+                // log("icon size " +
+                //     card.iconSize.toString() +
+                //     " " +
+                //     "font size " +
+                //     card.formattedTitle!.entities.first.fontSize.toString());
+                // log(card.bgColor.toString());
               },
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -55,11 +55,14 @@ class HC6Widget extends StatelessWidget {
                       style: TextStyle(
                         fontSize: card.formattedTitle!.entities.first.fontSize
                             ?.toDouble(),
-                        color: hexToColor(card.formattedTitle!.entities.first.color.toString()),
-                        fontWeight: card.formattedTitle!.entities.first.fontFamily ==
-                                'met_semi_bold'
-                            ? FontWeight.w500
-                            : FontWeight.w700,
+                        color: hexToColor(card
+                            .formattedTitle!.entities.first.color
+                            .toString()),
+                        fontWeight:
+                            card.formattedTitle!.entities.first.fontFamily ==
+                                    'met_semi_bold'
+                                ? FontWeight.w500
+                                : FontWeight.w700,
                       ),
                     ),
                   ),
