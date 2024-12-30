@@ -9,6 +9,7 @@ Fampay Assignment for making developing a standalone container, that displays a 
 5) for the logic of 
     '- `text` - text to parse
     
+    
     e.g. `"Hello {}, you look lonely! Why don't you do {}!"` 
     
     the two `{}`s each represent an entity and would be substituted with attributed text, constructed from `entities`.'
